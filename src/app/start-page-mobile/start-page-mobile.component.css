@@ -1,3 +1,5 @@
+/* Reset and Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +10,8 @@ body {
     position: relative;
     overflow-x: hidden;
     color: #333;
+    font-family: 'DescriptionFont', sans-serif;
+    /* Ensure a fallback font */
 }
 
 
@@ -71,7 +75,9 @@ body {
 
 .container {
     direction: rtl;
-    font-family: 'DescriptionFont';
+    font-family: 'DescriptionFont', sans-serif;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .c2 {
@@ -110,10 +116,10 @@ body {
 /* Header Section */
 
 .header {
-    font-family: 'TitlesFont';
+    font-family: 'TitlesFont', sans-serif;
     position: relative;
     text-align: center;
-    padding: 50px;
+    padding: 50px 20px;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.05));
 }
 
@@ -123,7 +129,7 @@ body {
 }
 
 .header h1 {
-    font-family: 'HeaderFont';
+    font-family: 'HeaderFont', sans-serif;
     font-size: 4rem;
     font-weight: bold;
     color: #2a2a72;
@@ -132,26 +138,25 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.header-image1 {
-    position: absolute;
-    left: 0;
-    top: 100%;
-    transform: translateY(-50%) rotate(-3deg);
+.header-image1,
+.header-image2 {
     width: 400px;
+    /* Reduced size for responsiveness */
     height: auto;
     object-fit: cover;
     z-index: 0;
 }
 
+.header-image1 {
+    left: 50%;
+    top: 100%;
+    transform: translateY(-50%) rotate(-3deg);
+}
+
 .header-image2 {
-    position: absolute;
-    right: 0;
-    top: 40%;
+    right: 55%;
+    top: 45%;
     transform: translateY(-50%) rotate(0deg);
-    width: 400px;
-    height: auto;
-    object-fit: cover;
-    z-index: 0;
 }
 
 
@@ -173,8 +178,118 @@ section {
     width: 100%;
     height: 100%;
     z-index: -1;
-    /* Put the line behind the images and text */
+    /* Hide on mobile for clarity */
 }
+
+@media(max-width: 767px) {
+    .connector {
+        display: none;
+    }
+    /* Header Adjustments */
+    .header {
+        padding: 30px 10px;
+    }
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    .header-image1,
+    .header-image2 {
+        width: 150px;
+        /* Adjust positions for mobile */
+    }
+    .header-image1 {
+        left: 5%;
+        top: 90%;
+    }
+    .header-image2 {
+        right: 5%;
+        top: 35%;
+    }
+    /* Typed-out animation */
+    .typed-out {
+        font-size: 1.5rem;
+    }
+    /* Image Comments Sections */
+    .image-comments-section {
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+    .image-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .image-comments-section.image-right .image-container,
+    .image-comments-section.image-left .image-container {
+        flex-direction: column;
+    }
+    .comments {
+        width: 90%;
+        margin: 15px 0;
+        text-align: center !important;
+        max-width: 90%;
+    }
+    .comments::before {
+        display: none;
+    }
+    .image {
+        width: 100%;
+        height: auto;
+        transform: rotate(0deg);
+    }
+    .image2 {
+        transform: rotate(0deg);
+    }
+    /* Image Collage Section */
+    .image-collage-section {
+        flex-direction: column;
+        padding: 30px 10px;
+        transform: none;
+    }
+    .image-collage-section .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+        width: 100%;
+        height: auto;
+        transform: none;
+    }
+    .image-collage-section .comments {
+        width: 100%;
+        margin-top: 20px;
+        transform: none;
+    }
+    /* Grid Items */
+    .grid-item1,
+    .grid-item2,
+    .grid-item3,
+    .grid-item4,
+    .grid-item5,
+    .grid-item6,
+    .grid-item7 {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    .grid-item1 {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    .grid-item4 {
+        grid-row: span 2;
+    }
+    /* Footer Adjustments */
+    footer {
+        padding: 30px 10px;
+    }
+    footer p {
+        font-size: 0.9rem;
+    }
+    footer a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+
+
+/* Content Sections Continued */
 
 .image-comments-section {
     display: flex;
@@ -243,9 +358,7 @@ section {
 
 .image {
     width: 700px;
-    /* Increased width */
     height: 400px;
-    /* Increased height */
     background-size: cover;
     background-position: center;
     border-radius: 15px;
@@ -272,11 +385,6 @@ section {
 .image2 {
     background-image: url('src/assets/images/hadar.jpg');
 }
-
-
-/* .image3 {
-    background-image: url('src/assets/images/image3.jpg');
-} */
 
 
 /* Comments Styles */
@@ -324,40 +432,7 @@ footer a:hover {
 }
 
 
-/* Responsive Adjustments */
-
-@media(max-width: 767px) {
-    .header-text h1 {
-        font-size: 2rem;
-    }
-    .image-comments-section {
-        flex-direction: column;
-    }
-    .image-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .image-comments-section.image-right .image-container,
-    .image-comments-section.image-left .image-container {
-        flex-direction: column;
-    }
-    .comments {
-        margin: 20px 0 0 0;
-        text-align: center !important;
-    }
-    .comments::before {
-        display: none;
-    }
-    .image {
-        width: 80%;
-        /* Adjusted for better responsiveness */
-        height: auto;
-        transform: rotate(0deg);
-    }
-    .image2 {
-        transform: rotate(0deg);
-    }
-}
+/* Image Collage Section */
 
 .image-collage-section {
     display: flex;
